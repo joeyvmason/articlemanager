@@ -19,6 +19,12 @@ paths:
       description: The List Articles endpoint returns information about the articles for the current logged in user. The response includes the title, body and other details about each article, and lists the articles in the order created.
       tags:
         - Articles
+      parameters: 
+        - name: X-Auth-Token
+          in: header
+          description: Access token for user
+          type: string
+          required: true
       responses:
         200:
           description: An array of articles
@@ -35,6 +41,18 @@ paths:
       description: The Create Article endpoint allows you to create a new article for the current logged in user. The response includes the title, body and other details about the article.
       tags:
         - Articles
+      parameters: 
+        - name: X-Auth-Token
+          in: header
+          description: Access token for user
+          type: string
+          required: true
+        - name: article
+          in: body
+          description: Article to be created
+          required: true
+          schema:
+            $ref: '#/definitions/Article'
       responses: 
         200:
           description: The newly created article
@@ -46,6 +64,11 @@ paths:
             $ref: '#/definitions/Error'
   /articles/{articleId}:
     parameters:
+        - name: X-Auth-Token
+          in: header
+          description: Access token for user
+          type: string
+          required: true
         - name: articleId
           in: path
           description: The id of the article
@@ -70,11 +93,30 @@ paths:
       description: The Update Article endpoint allows you to update the requested article. The response includes the title, body and other details about the article.
       tags:
         - Articles
+      parameters:
+        - name: article
+          in: body
+          description: Article to be created
+          required: true
+          schema:
+            $ref: '#/definitions/Article'
       responses:
         200:
           description: The updated article
           schema:
             $ref: '#/definitions/Article'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete Article
+      description: The Delete Article endpoint allows you to delete the requested article.
+      tags:
+        - Articles
+      responses:
+        200:
+          description: Empty response
         default:
           description: Unexpected error
           schema:
@@ -126,7 +168,15 @@ paths:
       summary: Sign out current user
       tags:
         - Auth
-      responses: 
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          description: Access token for user
+          type: string
+          required: true
+      responses:
+        200: 
+          description: Empty response
         default:
           description: Unexpected error
           schema:
@@ -137,6 +187,12 @@ paths:
       description: The User Profile endpoint returns information about the user that has authorized with the application.
       tags:
         - Users, Auth
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          description: Access token for user
+          type: string
+          required: true
       responses:
         200:
           description: User information for current logged in user.

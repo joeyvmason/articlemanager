@@ -1,5 +1,7 @@
 package com.joeyvmason.articlemanager.core.application;
 
+import com.joeyvmason.articlemanager.core.domain.articles.Article;
+import com.joeyvmason.articlemanager.core.domain.auth.AuthToken;
 import com.joeyvmason.articlemanager.core.domain.users.User;
 import com.mongodb.BasicDBObject;
 import org.slf4j.Logger;
@@ -10,6 +12,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.index.Index;
 
 import javax.annotation.PostConstruct;
+import java.util.concurrent.TimeUnit;
 
 public class InitializeIndexes {
     private static final Logger logger = LoggerFactory.getLogger(InitializeIndexes.class);
@@ -25,6 +28,13 @@ public class InitializeIndexes {
 
         //User
         ensureIndex(User.class, new Index().on("emailAddress", Sort.DEFAULT_DIRECTION).unique().background());
+
+        //Articles
+        ensureIndex(Article.class, new Index().on("owner", Sort.DEFAULT_DIRECTION).background());
+
+        //AuthToken
+        ensureIndex(AuthToken.class, new Index().on("accessToken", Sort.DEFAULT_DIRECTION).unique().background());
+        ensureIndex(AuthToken.class, new Index().on("created", Sort.DEFAULT_DIRECTION).expire(7, TimeUnit.DAYS).background());
     }
 
     private static class KeyBuilder {
