@@ -33,8 +33,9 @@ public class InitializeIndexes {
         ensureIndex(Article.class, new Index().on("owner", Sort.DEFAULT_DIRECTION).background());
 
         //AuthToken
+        dropIndex(AuthToken.class, "created_1");
         ensureIndex(AuthToken.class, new Index().on("accessToken", Sort.DEFAULT_DIRECTION).unique().background());
-        ensureIndex(AuthToken.class, new Index().on("created", Sort.DEFAULT_DIRECTION).expire(7, TimeUnit.DAYS).background());
+        ensureIndex(AuthToken.class, new Index().on("expiration", Sort.DEFAULT_DIRECTION).expire(0, TimeUnit.DAYS).background());
     }
 
     private static class KeyBuilder {

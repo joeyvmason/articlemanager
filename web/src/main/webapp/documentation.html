@@ -275,11 +275,11 @@
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-        "created" : "aeiou",
+        "created" : "2000-01-23T04:56:07.000+00:00",
         "id" : "aeiou",
         "title" : "aeiou",
         "body" : "aeiou",
-        "updated" : "aeiou"
+        "updated" : "2000-01-23T04:56:07.000+00:00"
         }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -334,11 +334,11 @@
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-        "created" : "aeiou",
+        "created" : "2000-01-23T04:56:07.000+00:00",
         "id" : "aeiou",
         "title" : "aeiou",
         "body" : "aeiou",
-        "updated" : "aeiou"
+        "updated" : "2000-01-23T04:56:07.000+00:00"
         }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -381,11 +381,11 @@
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
-        "created" : "aeiou",
+        "created" : "2000-01-23T04:56:07.000+00:00",
         "id" : "aeiou",
         "title" : "aeiou",
         "body" : "aeiou",
-        "updated" : "aeiou"
+        "updated" : "2000-01-23T04:56:07.000+00:00"
         } ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -434,11 +434,11 @@
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-        "created" : "aeiou",
+        "created" : "2000-01-23T04:56:07.000+00:00",
         "id" : "aeiou",
         "title" : "aeiou",
         "body" : "aeiou",
-        "updated" : "aeiou"
+        "updated" : "2000-01-23T04:56:07.000+00:00"
         }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -487,8 +487,10 @@
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
+        "created" : "2000-01-23T04:56:07.000+00:00",
         "expiration" : "aeiou",
-        "accessToken" : "aeiou"
+        "accessToken" : "aeiou",
+        "updated" : "2000-01-23T04:56:07.000+00:00"
         }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -570,8 +572,10 @@
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
+        "created" : "2000-01-23T04:56:07.000+00:00",
         "expiration" : "aeiou",
-        "accessToken" : "aeiou"
+        "accessToken" : "aeiou",
+        "updated" : "2000-01-23T04:56:07.000+00:00"
         }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -616,7 +620,9 @@
     <pre class="example"><code>{
         "firstName" : "aeiou",
         "lastName" : "aeiou",
-        "id" : "aeiou"
+        "created" : "2000-01-23T04:56:07.000+00:00",
+        "id" : "aeiou",
+        "updated" : "2000-01-23T04:56:07.000+00:00"
         }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -655,8 +661,8 @@
         <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Unique identifier representing a specific article. </div>
         <div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Title of article. </div>
         <div class="param">body (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Body of article. </div>
-        <div class="param">created (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Date article was created. </div>
-        <div class="param">updated (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Date article was last updated. </div>
+        <div class="param">created (optional)</div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span> Date article was created. format: date</div>
+        <div class="param">updated (optional)</div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span> Date article was last updated. format: date</div>
     </div>  <!-- field-items -->
 </div>
 <div class="model">
@@ -664,6 +670,8 @@
     <div class="field-items">
         <div class="param">accessToken (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Access token used to make API requsts on behalf of user. </div>
         <div class="param">expiration (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Date of expiration of access token. </div>
+        <div class="param">created (optional)</div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span> Date user was created. format: date</div>
+        <div class="param">updated (optional)</div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span> Date user was last updated. format: date</div>
     </div>  <!-- field-items -->
 </div>
 <div class="model">
@@ -685,6 +693,8 @@
         <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Unique identifier representing a specific user. </div>
         <div class="param">firstName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> First name of article. </div>
         <div class="param">lastName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Last name of user. </div>
+        <div class="param">created (optional)</div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span> Date user was created. format: date</div>
+        <div class="param">updated (optional)</div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span> Date user was last updated. format: date</div>
     </div>  <!-- field-items -->
 </div>
 </body>
