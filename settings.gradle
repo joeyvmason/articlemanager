@@ -1,0 +1,3 @@
+include 'core', 'web'
+
+rootProject.name = 'articlemanager'

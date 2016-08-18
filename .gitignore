@@ -1,0 +1,9 @@
+.gradle
+.idea
+*.iml
+**/.DS_Store
+**/build
+**/gradle
+classes
+target
+.classpath

@@ -1,0 +1,60 @@
+allprojects {
+	task wrapper(type: Wrapper) {
+		gradleVersion = '2.1'
+	}
+
+	group = 'com.joeyvmason'
+	version = '1.0'
+
+	logging.level = LogLevel.DEBUG
+
+	apply plugin: 'java'
+
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+	apply from: "$rootDir/libs.gradle"
+
+	repositories {
+		mavenCentral()
+		jcenter()
+		maven { url  "http://dl.bintray.com/basecrm/maven"}
+		maven { url "https://repository.apache.org/content/repositories/snapshots/" }
+	}
+
+	configurations.all {
+		all*.exclude group: "commons-logging", module: "commons-logging"
+	}
+
+	dependencies {
+		compile libs.javax.servletApi
+		compile libs.guava
+		compile libs.retryer
+		compile libs.jodaTime
+		compile libs.jackson
+		compile libs.jsonPath
+		compile libs.spring.webmvc
+		compile libs.spring.aop
+		compile libs.spring.support
+		compile libs.spring.oxm
+		compile libs.logging.logback
+		compile libs.logging.jcloverslf4j
+		compile libs.awaitility
+		compile libs.aspectj.aspectjrt
+		compile libs.aspectj.tools
+		compile libs.springData.mongodb
+		compile libs.apacheCommons.io
+		compile libs.apacheCommons.lang3
+
+		testCompile libs.test.fongo
+		testCompile libs.test.testng
+		testCompile libs.test.spring
+		testCompile libs.test.festAssert
+		testCompile libs.test.mockito
+		testCompile libs.test.jsonPathAssert
+	}
+
+	test {
+		useTestNG()
+	}
+}

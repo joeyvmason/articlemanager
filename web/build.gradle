@@ -1,0 +1,13 @@
+apply plugin: 'war'
+
+dependencies {
+	compile project(':core')
+
+	testCompile project(':core').sourceSets.test.output
+
+	providedCompile libs.javax.servletApi
+	compile libs.apacheCommons.lang3
+	compile libs.apacheCommons.fileUpload
+	compile libs.hibernateValidator
+	compile libs.javax.validationApi
+}
