@@ -217,11 +217,11 @@ definitions:
         description: Body of article.
       created:
         type: string
-        format: date
+        format: date-time
         description: Date article was created.
       updated:
         type: string
-        format: date
+        format: date-time
         description: Date article was last updated.
   User:
     type: object
@@ -237,11 +237,11 @@ definitions:
         description: Last name of user.
       created:
         type: string
-        format: date
+        format: date-time
         description: Date user was created.
       updated:
         type: string
-        format: date
+        format: date-time
         description: Date user was last updated.
   Credentials:
     type: object
@@ -263,11 +263,11 @@ definitions:
         description: Date of expiration of access token.
       created:
         type: string
-        format: date
+        format: date-time
         description: Date user was created.
       updated:
         type: string
-        format: date
+        format: date-time
         description: Date user was last updated.
   Error:
     type: object
