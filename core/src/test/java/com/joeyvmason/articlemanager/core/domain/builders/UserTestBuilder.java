@@ -8,7 +8,6 @@ public class UserTestBuilder {
     private String emailAddress = String.format("foo%s@foobar.com", RandomStringUtils.randomAlphanumeric(10));
     private String firstName = RandomStringUtils.randomAlphanumeric(10);
     private String lastName = RandomStringUtils.randomAlphanumeric(10);
-    private String zipCode = RandomStringUtils.randomNumeric(5);
     private String password = RandomStringUtils.randomAlphanumeric(10);
 
     public static UserTestBuilder valid() {
@@ -16,7 +15,7 @@ public class UserTestBuilder {
     }
 
     public User build() {
-        return new User(emailAddress, firstName, lastName, zipCode, password);
+        return new User(emailAddress, firstName, lastName, password);
     }
 
     public UserTestBuilder withEmailAddress(String emailAddress) {

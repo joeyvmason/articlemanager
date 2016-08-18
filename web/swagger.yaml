@@ -1,0 +1,202 @@
+swagger: '2.0'
+info:
+  title: Article Manager API
+  description: Create and manage articles
+  version: "1.0.0"
+# the domain of the service
+host: article-manager.us-east-1.elasticbeanstalk.com
+# array of all schemes that your API supports
+schemes:
+  - http
+# will be prefixed to all paths
+basePath: '/'
+produces:
+  - application/json
+paths:
+  /articles:
+    get:
+      summary: List Articles
+      description: The List Articles endpoint returns information about the articles for the current logged in user. The response includes the title, body and other details about each article, and lists the articles in the order created.
+      tags:
+        - Articles
+      responses:
+        200:
+          description: An array of articles
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Article'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create Article
+      description: The Create Article endpoint allows you to create a new article for the current logged in user. The response includes the title, body and other details about the article.
+      tags:
+        - Articles
+      responses: 
+        200:
+          description: The newly created article
+          schema:
+            $ref: '#/definitions/Article'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /articles/{articleId}:
+    parameters:
+        - name: articleId
+          in: path
+          description: The id of the article
+          required: true
+          type: string
+    get:
+      summary: Retrieve Article
+      description: The Retrieve Article endpoint returns the requested article. The response includes the title, body and other details about the article.
+      tags:
+        - Articles
+      responses:
+        200:
+          description: The requested article
+          schema:
+            $ref: '#/definitions/Article'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update Article
+      description: The Update Article endpoint allows you to update the requested article. The response includes the title, body and other details about the article.
+      tags:
+        - Articles
+      responses:
+        200:
+          description: The updated article
+          schema:
+            $ref: '#/definitions/Article'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /auth/signup:
+    post:
+      summary: Sign up a new user
+      tags:
+        - Auth
+      parameters:
+        - name: credentials
+          in: body
+          description: The email/password of the User
+          schema: 
+            $ref: "#/definitions/Credentials"
+          required: true
+      responses: 
+        200:
+          description: Auth token for newly created user
+          schema: 
+            $ref: '#/definitions/AuthToken'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /auth/login:
+    post:
+      summary: Sign in existing user
+      tags:
+        - Auth
+      parameters:
+        - name: credentials
+          in: body
+          description: The email/password of the User
+          schema: 
+            $ref: "#/definitions/Credentials"
+          required: true
+      responses: 
+        200:
+          description: Auth token for logged in user
+          schema: 
+            $ref: '#/definitions/AuthToken'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /auth/logout:
+    post:
+      summary: Sign out current user
+      tags:
+        - Auth
+      responses: 
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /auth/me:
+    get:
+      summary: User Profile
+      description: The User Profile endpoint returns information about the user that has authorized with the application.
+      tags:
+        - Users, Auth
+      responses:
+        200:
+          description: User information for current logged in user.
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Article:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier representing a specific article.
+      title:
+        type: string
+        description: Title of article.
+      body:
+        type: string
+        description: Body of article.
+      created:
+        type: string
+        description: Date article was created.
+      updated:
+        type: string
+        description: Date article was last updated.
+  User:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier representing a specific user.
+      firstName:
+        type: string
+        description: First name of article.
+      lastName:
+        type: string
+        description: Last name of user.
+  Credentials:
+    type: object
+    properties:
+      emailAddress:
+        type: string
+        description: Email address of user
+      password:
+        type: string
+        description: Password of user.
+  AuthToken:
+    type: object
+    properties:
+      accessToken:
+        type: string
+        description: Access token used to make API requsts on behalf of user.
+      expiration:
+        type: string
+        description: Date of expiration of access token.
+  Error:
+    type: object
+    properties:
+      message:
+        type: string

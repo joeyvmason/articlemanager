@@ -14,32 +14,24 @@ import java.util.Set;
 public class User extends AuditableEntity {
 
     private String emailAddress;
-    private String zipCode;
     private String firstName;
     private String lastName;
 
     @JsonIgnore
     private byte[] shaPassword;
 
+    @JsonIgnore
     private Set<Role> roles = Sets.newHashSet();
 
     public User() {}
 
-    public User(String emailAddress, String firstName, String lastName, String zipCode, String password) {
+    public User(String emailAddress, String firstName, String lastName, String password) {
         this.emailAddress = emailAddress;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.zipCode = zipCode;
         setPassword(password);
     }
 
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;

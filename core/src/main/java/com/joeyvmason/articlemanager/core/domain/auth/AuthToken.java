@@ -1,5 +1,6 @@
 package com.joeyvmason.articlemanager.core.domain.auth;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.joeyvmason.articlemanager.core.domain.AuditableEntity;
 import com.joeyvmason.articlemanager.core.domain.users.User;
 import org.joda.time.DateTime;
@@ -11,6 +12,7 @@ import java.util.UUID;
 public class AuthToken extends AuditableEntity {
 
     @DBRef
+    @JsonIgnore
     private User user;
 
     private String accessToken;

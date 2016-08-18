@@ -35,7 +35,7 @@ public class AuthController {
     @RequestMapping(value = "/signup")
     public AuthToken shouldSignUp(@RequestBody LoginForm loginForm) {
         try {
-            User user = userRepository.save(new User(loginForm.getEmailAddress(), null, null, null, loginForm.getPassword()));
+            User user = userRepository.save(new User(loginForm.getEmailAddress(), null, null, loginForm.getPassword()));
             return login(user);
         } catch (DuplicateKeyException e) {
             throw new BadRequestException("Account already exists with this email address");
